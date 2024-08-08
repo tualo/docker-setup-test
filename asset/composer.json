@@ -1,0 +1,14 @@
+{
+    "name": "tualo/office",
+    "minimum-stability": "dev",
+    "scripts": {
+        "post-update-cmd":[
+            "php ./vendor/tualo/bsc/src/commandline/Cli.php postcheck --client db"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "nodejs-php-fallback/nodejs-php-fallback": true
+        }
+    }
+}
