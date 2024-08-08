@@ -1,6 +1,8 @@
 #!/bin/sh
 
 service mariadb start
+service apache2 start
+
 mysql -e "drop database if exists db";
 mysql -e "drop database if exists sessions";
 
@@ -41,6 +43,8 @@ composer update
 
 ./tm configuration --key __SESSION_DSN__ --value sessions
 ./tm configuration --key __SESSION_USER__ --value systemuser
+
+./tm install-htaccess
 
 ./tm createsystem --silent --db db --session sessions
 echo "./tm install-sessionsql-bsc-main --client db ======================="
@@ -110,4 +114,5 @@ echo "USING _JAVA_OPTIONS: $_JAVA_OPTIONS"
 # ./tm configuration --section ext-compiler --key sencha_compiler_command --value $(which sencha)
 
 
-apache2ctl -D FOREGROUND
+# apache2ctl -D FOREGROUND
+tail -f /var/log/apache2/error.log

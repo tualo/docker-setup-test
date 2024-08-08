@@ -9,6 +9,7 @@ RUN apt-get update; \
 
 RUN mkdir -p /var/www/html/server
 RUN mkdir -p /var/www/html/server_setup
+RUN mkdir -p /var/sencha
 RUN wget https://tualo.de/downloads/SenchaCmd-7.8.0.59-linux-amd64.sh -O /root/SenchaCmd-7.8.0.59-linux-amd64.sh
 RUN wget https://tualo.de/downloads/ext-7.8.0.zip -O /root/ext-7.8.0.zip
 RUN wget https://tualo.de/downloads/epa-7.8.0.zip -O /root/ext-addons-7.8.0.zip
@@ -68,7 +69,6 @@ COPY asset/51-lower.cnf /etc/mysql/mariadb.conf.d/51-lower.cnf
 
 
 WORKDIR "/root"
-RUN mkdir -p /var/sencha
 RUN chmod +x /root/SenchaCmd-7.8.0.59-linux-amd64.sh
 
 # RUN export INSTALL4J_JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
@@ -82,6 +82,9 @@ RUN export _JAVA_OPTIONS="-Xms2048m -Xmx8192m -XX:+AlwaysPreTouch -XX:+TieredCom
 RUN echo ' ' >> /root/.bashrc
 RUN echo 'export PATH="/var/sencha/Sencha/Cmd/7.8.0.59/:$PATH"' >> /root/.bashrc
 RUN echo 'export _JAVA_OPTIONS="-Xms2048m -Xmx8192m -XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:NewRatio=1 -XX:+UseConcMarkSweepGC -XX:MaxMetaspaceSize=1024m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:MaxTenuringThreshold=15"' >> /root/.bashrc
+
+COPY asset/000-default.conf /etc/apache2/sites-available/000-default.conf
+ 
 WORKDIR "/var/www/html/server"
 
 EXPOSE 80
