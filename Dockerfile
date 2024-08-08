@@ -5,7 +5,8 @@ RUN apt-get update; \
     apt-get -yq upgrade; \
     apt-get install -y apt-utils; \
     apt-get install -y --no-install-recommends; \
-    apt-get install -y wget;
+    apt-get install -y wget; \
+    apt-get install -y unzip;
 
 RUN mkdir -p /var/www/html/server
 RUN mkdir -p /var/www/html/server_setup
@@ -15,7 +16,8 @@ RUN wget https://tualo.de/downloads/ext-7.8.0.zip -O /root/ext-7.8.0.zip
 RUN wget https://tualo.de/downloads/epa-7.8.0.zip -O /root/ext-addons-7.8.0.zip
 
 
-RUN unzip ext-7.8.0.zip ; \
+WORKDIR "/root"
+RUN unzip ext-7.8.0.zip; \
     unzip ext-addons-7.8.0.zip; \
     mv ext-7.8.0 /var/sencha/; \
     mv ext-addons-7.8.0 /var/sencha/; \
