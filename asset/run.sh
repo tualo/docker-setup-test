@@ -30,7 +30,7 @@ fi
 
 
 # export _JAVA_OPTIONS="-Xms2048m -Xmx8192m -XX:-UseG1GC"
-# export _JAVA_OPTIONS="-XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:NewRatio=1 -XX:+UseConcMarkSweepGC -XX:MaxMetaspaceSize=1024m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:MaxTenuringThreshold=15"
+# export _JAVA_OPTIONS="-Xms2048m -Xmx8192m -XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:NewRatio=1 -XX:+UseConcMarkSweepGC -XX:MaxMetaspaceSize=1024m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:MaxTenuringThreshold=15"
 
 composer require --dev tualo/onlinevote
 composer update
@@ -101,6 +101,9 @@ echo "./tm import-onlinevote --client db ======================="
 echo "./tm import-onlinevote-page --client db ======================="
 ./tm import-onlinevote-page --client db
 
+
+./tm compile
+./tm compile --client db
 # ./tm configuration --section ext-compiler --key sencha_compiler_command --value $(which sencha)
 
 

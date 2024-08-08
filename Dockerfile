@@ -66,7 +66,7 @@ RUN chmod +x /root/SenchaCmd-7.8.0.59-linux-amd64.sh
 
 # RUN export INSTALL4J_JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 
-RUN export _JAVA_OPTIONS="-XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:NewRatio=1 -XX:+UseConcMarkSweepGC -XX:MaxMetaspaceSize=1024m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:MaxTenuringThreshold=15"; \
+RUN export _JAVA_OPTIONS="-Xms2048m -Xmx8192m -XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:NewRatio=1 -XX:+UseConcMarkSweepGC -XX:MaxMetaspaceSize=1024m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:MaxTenuringThreshold=15"; \
     /root/SenchaCmd-7.8.0.59-linux-amd64.sh -Dall=true -q -dir /var/sencha/Sencha/Cmd/7.8.0.59; \
     chmod -R 777 /var/sencha;
 
@@ -79,7 +79,7 @@ RUN unzip ext-7.8.0.zip ; \
 
 RUN echo ' ' >> /root/.bashrc
 RUN echo 'export PATH="/var/sencha/Sencha/Cmd/7.8.0.59/:$PATH"' >> /root/.bashrc
-RUN echo 'export _JAVA_OPTIONS="-XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:NewRatio=1 -XX:+UseConcMarkSweepGC -XX:MaxMetaspaceSize=1024m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:MaxTenuringThreshold=15"' >> /root/.bashrc
+RUN echo 'export _JAVA_OPTIONS="-Xms2048m -Xmx8192m -XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:NewRatio=1 -XX:+UseConcMarkSweepGC -XX:MaxMetaspaceSize=1024m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:MaxTenuringThreshold=15"' >> /root/.bashrc
 WORKDIR "/var/www/html/server"
 
 EXPOSE 80
