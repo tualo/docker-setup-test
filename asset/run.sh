@@ -102,6 +102,9 @@ echo "./tm import-onlinevote-page --client db ======================="
 ./tm import-onlinevote-page --client db
 
 
+export _JAVA_OPTIONS="-Xms2048m -Xmx8192m -XX:+AlwaysPreTouch -XX:+TieredCompilation -XX:NewRatio=1 -XX:+UseConcMarkSweepGC -XX:MaxMetaspaceSize=1024m -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -XX:MaxTenuringThreshold=15"
+echo "USING _JAVA_OPTIONS: $_JAVA_OPTIONS"
+
 ./tm compile
 ./tm compile --client db
 # ./tm configuration --section ext-compiler --key sencha_compiler_command --value $(which sencha)
