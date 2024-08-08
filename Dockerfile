@@ -14,6 +14,13 @@ RUN wget https://tualo.de/downloads/ext-7.8.0.zip -O /root/ext-7.8.0.zip
 RUN wget https://tualo.de/downloads/epa-7.8.0.zip -O /root/ext-addons-7.8.0.zip
 
 
+RUN unzip ext-7.8.0.zip ; \
+    unzip ext-addons-7.8.0.zip; \
+    mv ext-7.8.0 /var/sencha/; \
+    mv ext-addons-7.8.0 /var/sencha/; \
+    cp -r /var/sencha/ext-addons-7.8.0/packages/* /var/sencha/ext-7.8.0/packages/;
+
+
 RUN apt-get update; \
     apt-get install -y nodejs; \
     apt-get install -y npm;
@@ -70,11 +77,6 @@ RUN export _JAVA_OPTIONS="-Xms2048m -Xmx8192m -XX:+AlwaysPreTouch -XX:+TieredCom
     /root/SenchaCmd-7.8.0.59-linux-amd64.sh -Dall=true -q -dir /var/sencha/Sencha/Cmd/7.8.0.59; \
     chmod -R 777 /var/sencha;
 
-RUN unzip ext-7.8.0.zip ; \
-    unzip ext-addons-7.8.0.zip; \
-    mv ext-7.8.0 /var/sencha/; \
-    mv ext-addons-7.8.0 /var/sencha/; \
-    cp -r /var/sencha/ext-addons-7.8.0/packages/* /var/sencha/ext-7.8.0/packages/;
 
 
 RUN echo ' ' >> /root/.bashrc
