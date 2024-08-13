@@ -8,7 +8,6 @@ RUN apt-get update; \
     apt-get install -y wget; \
     apt-get install -y unzip;
 
-RUN mkdir -p /var/www/html/server
 RUN mkdir -p /var/www/html/server_setup
 RUN mkdir -p /var/sencha
 RUN wget https://tualo.de/downloads/SenchaCmd-7.8.0.59-linux-amd64.sh -O /root/SenchaCmd-7.8.0.59-linux-amd64.sh
@@ -58,7 +57,9 @@ RUN apt-get update; \
     apt-get install -y openjdk-8-jre;
 
 
-
+RUN adduser --gecos "" --disabled-password --quiet webuser
+RUN mkdir -p /home/webuser/www/html/server
+RUN chown -R webuser:webuser /home/webuser/www
 
 
 
@@ -87,7 +88,10 @@ RUN echo 'export _JAVA_OPTIONS="-Xms2048m -Xmx8192m -XX:+AlwaysPreTouch -XX:+Tie
 
 COPY asset/000-default.conf /etc/apache2/sites-available/000-default.conf
  
-WORKDIR "/var/www/html/server"
+
+COPY asset/user_run.sh /home/webuser/scripts/user_run.sh
+COPY asset/composer.json /home/webuser/www/html/server/composer.json
+WORKDIR "/home/webuser/www/html/server"
 
 EXPOSE 80
 CMD ["sh","/root/scripts/run.sh"]
