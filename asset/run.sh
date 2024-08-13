@@ -33,8 +33,8 @@ runuser -l webuser -c "sh /home/webuser/scripts/user_run.sh"
 
 
 
-runuser -l webuser chmod -R 777 .
-runuser -l webuser chmod -R 777 /var/sencha/Sencha/Cmd/repo
+# chmod -R 777 .
+# chmod -R 777 /var/sencha/Sencha/Cmd/repo
 
 # ./tm configuration --section ext-compiler --key sencha_compiler_command --value $(which sencha)
 
